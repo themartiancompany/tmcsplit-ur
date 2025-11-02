@@ -27,8 +27,6 @@
 #   Pellegrino Prevete (dvorak)
 #     <pellegrinoprevete@gmail.com>
 #     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
-#   Filipe Bertelli
-#     <filipebertelli@tutanota.com>
 
 _os="$( \
   uname \
@@ -99,7 +97,7 @@ makedepends=(
 _tarname="${_pkg}-${pkgver}"
 _tarfile="${_tarname}.${_archive_format}"
 _sum="d49906ca8f1488dc73fb20e692523cbd1f778caaecefeb368166e0fb6d9d78ef"
-_sig_sum="1d56d23d54614c9a64d175cf67661d3389967c1b8911bdd07c2c36d3e73d8ca0"
+_sig_sum="6122a66cdcdbfe0c58c0744db63d3ce9cebcf2c12080a5765f149b964807d8a0"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 # Truocolo
@@ -140,7 +138,7 @@ noextract=(
   "${_tarfile}"
 )
 
-package_nodejs-serve() {
+package_nodejs-rollup() {
   local \
     _npm_options=() \
     _find_opts=()
