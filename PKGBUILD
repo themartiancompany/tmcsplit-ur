@@ -105,8 +105,8 @@ _tarname="${_pkg}-${_tag}"
 _npm_tarname="${_ns}-${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="c260bc56e3eb822f96ea10bdef55b4158a7cc5b4ec55503f61f1cdff367e407a"
-_sig_sum="bca05e0d77e803cbfbf8304192b62964159fe71e6bcb8023bcae5954eab6258a"
+_sum="26d4230e0bff3acbd8618eb34aeb93f08a94281e9ac0c54f3f8758ad5225d2d1"
+_sig_sum="296c4fb420c0275d01d095ea9cbcb49ecb25791346d26699c512c073634f6ebb"
 _bundle_sum="e7bf622ac1afab6ebdd14f6ff621874d24aca9e4899f1fa7616a84faea4ed81c"
 _bundle_sig_sum="bdf198594304ccfd8d262ffa4ff5f1a0511ee198a73b1c74ed227f346eda4998"
 _npm_sum="e6f8f5b672465be2bfac83de21f575578612afe510b8fc059e1ce839c4cdc021"
@@ -234,5 +234,3 @@ package_nodejs-opfs() {
 }
 
 # vim:set sw=2 sts=-1 et:
-26d4230e0bff3acbd8618eb34aeb93f08a94281e9ac0c54f3f8758ad5225d2d1  opfs-8560a11f42a0e0208e7e915daca6b811dfea860d.zip
-296c4fb420c0275d01d095ea9cbcb49ecb25791346d26699c512c073634f6ebb  /home/dev/opfs-8560a11f42a0e0208e7e915daca6b811dfea860d.zip.sig
