@@ -225,13 +225,13 @@ build() {
   local \
     _files=()
   _files+=(
-    "LICENSE"
-    "README.cn.md"
+    "AUTHORS.rst"
+    "COPYING"
     "README.md"
-    "dist"
-    "docs"
+    "eslint.config.mjs"
+    "fs"
+    "man"
     "package.json"
-    "src"
   )
   if [[ "${_npm}" == "false" ]]; then
     cd \
@@ -289,3 +289,4 @@ package_tmcfs() {
 }
 
 # vim:set sw=2 sts=-1 et:
+
