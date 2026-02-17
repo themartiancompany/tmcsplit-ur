@@ -73,7 +73,7 @@ _pkgdesc=(
   "OPFS Tools modules."
 )
 pkgdesc="${_pkgdesc[*]}"
-_commit="8560a11f42a0e0208e7e915daca6b811dfea860d"
+_commit="e54b2b307ebf1f7288d160eff341230d4fe704a4"
 pkgver="2.0.5"
 pkgrel=1
 arch=(
@@ -105,8 +105,8 @@ _tarname="${_pkg}-${_tag}"
 _npm_tarname="${_ns}-${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="26d4230e0bff3acbd8618eb34aeb93f08a94281e9ac0c54f3f8758ad5225d2d1"
-_sig_sum="296c4fb420c0275d01d095ea9cbcb49ecb25791346d26699c512c073634f6ebb"
+_sum="dbaa0d514e0f7ecc5c9cbd5737db76b2abda8bff9360d63d21e670b8889247fd"
+_sig_sum="18ce9e304cce721e16fb924c218e28f98a7102745b59aa222996f96d4af3e459"
 _bundle_sum="e7bf622ac1afab6ebdd14f6ff621874d24aca9e4899f1fa7616a84faea4ed81c"
 _bundle_sig_sum="bdf198594304ccfd8d262ffa4ff5f1a0511ee198a73b1c74ed227f346eda4998"
 _npm_sum="e6f8f5b672465be2bfac83de21f575578612afe510b8fc059e1ce839c4cdc021"
@@ -234,5 +234,3 @@ package_nodejs-opfs() {
 }
 
 # vim:set sw=2 sts=-1 et:
-dbaa0d514e0f7ecc5c9cbd5737db76b2abda8bff9360d63d21e670b8889247fd  fs-e54b2b307ebf1f7288d160eff341230d4fe704a4.zip
-18ce9e304cce721e16fb924c218e28f98a7102745b59aa222996f96d4af3e459  fs-e54b2b307ebf1f7288d160eff341230d4fe704a4.zip.sig
