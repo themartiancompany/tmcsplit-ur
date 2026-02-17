@@ -45,7 +45,24 @@ if [[ ! -v "_evmfs" ]]; then
 fi
 _node="nodejs"
 if [[ "${_os}" == "Android" ]]; then
-  _node="nodejs-lts"
+  # This will have to be removed when we
+  # will have non-termux missing-provides bugged
+  # life and dogeos android nodejs and nodejs-lts
+  # builds.
+  _node_lts="$( \
+    ( pacman \
+       -Q \
+       "nodejs-lts" \
+       2>"/dev/null" || \
+      pacman \
+        -Q \
+        "nodejs" ) | \
+      awk \
+        '{print $1}' \
+      2>/dev/null)"
+  if [[ "${_node_lts}" != "" ]]; then
+    _node="nodejs-lts"
+  fi
 fi
 if [[ ! -v "_npm" ]]; then
   _npm="false"
@@ -58,23 +75,27 @@ if [[ ! -v "${_archive_format}" ]]; then
   if [[ "${_npm}" == "false" ]]; then
     if [[ "${_git_http}" == "github" ]]; then
       _archive_format="zip"
+    elif [[ "${_git_http}" == "gitlab" ]]; then
+      _archive_format="tar.xz"
     fi
   fi
 fi
-_pkg=opfs
-pkgbase="${_node}-${_pkg}"
+_pkg=tmcfs
+pkgbase="${_pkg}"
 pkgname=(
   "${pkgbase}"
 )
 _pkgdesc=(
-  "Browser-compatible 'fs' module"
-  "obtained combining the"
-  "'Happy OPFS' and the"
-  "OPFS Tools modules."
+  "Platform-independent Javascript"
+  "File System 'fs' module which"
+  "dynamically loads either the"
+  "platform's native 'fs' module"
+  "or the Origin Private File"
+  "System (opfs) module."
 )
 pkgdesc="${_pkgdesc[*]}"
 _commit="e54b2b307ebf1f7288d160eff341230d4fe704a4"
-pkgver="2.0.5"
+pkgver="0.0.3"
 pkgrel=1
 arch=(
   'any'
@@ -89,7 +110,7 @@ depends=(
   "${_node}"
 )
 provides=(
-  "${_pkg}=${pkgver}"
+  "nodejs-${_pkg}=${pkgver}"
 )
 makedepends=(
   "npm"
@@ -200,7 +221,7 @@ validpgpkeys=(
   '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
-package_nodejs-opfs() {
+package_tmcfs() {
   local \
     _npm_options=() \
     _find_opts=()
