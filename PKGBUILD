@@ -221,6 +221,40 @@ validpgpkeys=(
   '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
+build() {
+  local \
+    _files=()
+  _files+=(
+    "LICENSE"
+    "README.cn.md"
+    "README.md"
+    "dist"
+    "docs"
+    "package.json"
+    "src"
+  )
+  if [[ "${_npm}" == "false" ]]; then
+    cd \
+      "${_tarname}"
+    mkdir \
+      -p \
+      "build"
+    cp \
+      -r \
+      "${_files[@]}" \
+      "build"
+    cd \
+      "build"
+    npm \
+      install
+    npm \
+      pack
+    mv \
+      "${_ns}-${_pkg}-${pkgver}.tgz" \
+      "${srcdir}"
+  fi
+}
+
 package_tmcfs() {
   local \
     _npm_options=() \
