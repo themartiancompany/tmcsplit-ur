@@ -93,7 +93,7 @@ _pkgdesc=(
   "Javascript GNU Split rewrite."
 )
 pkgdesc="${_pkgdesc[*]}"
-_commit="690dbef7bad07c8e048e14713683e508e41946ef"
+_commit="fafbd865f974e07dc4aa3799fa56155bc440e620"
 _pkgver="0.0.1"
 pkgver="0.0.1"
 pkgrel=1
