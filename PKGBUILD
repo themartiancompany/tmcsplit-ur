@@ -260,7 +260,7 @@ build() {
   fi
 }
 
-package_tmcfs() {
+package_tmcsplit() {
   local \
     _npm_options=() \
     _find_opts=()
