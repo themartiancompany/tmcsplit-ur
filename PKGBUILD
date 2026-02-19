@@ -28,10 +28,10 @@
 #     <pellegrinoprevete@gmail.com>
 #     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
-_os="$( \
+_os="$(
   uname \
     -o)"
-_evmfs_available="$( \
+_evmfs_available="$(
   command \
     -v \
     "evmfs" || \
@@ -49,7 +49,7 @@ if [[ "${_os}" == "Android" ]]; then
   # will have non-termux missing-provides bugged
   # life and dogeos android nodejs and nodejs-lts
   # builds.
-  _node_lts="$( \
+  _node_lts="$(
     ( pacman \
        -Q \
        "nodejs-lts" \
@@ -83,24 +83,19 @@ if [[ ! -v "${_archive_format}" ]]; then
     fi
   fi
 fi
-_Pkg=fs
+_Pkg=split
 _pkg=tmc${_Pkg}
 pkgbase="${_pkg}"
 pkgname=(
   "${pkgbase}"
 )
 _pkgdesc=(
-  "Platform-independent Javascript"
-  "File System 'fs' module which"
-  "dynamically loads either the"
-  "platform's native 'fs' module"
-  "or the Origin Private File"
-  "System (opfs) module."
+  "Javascript GNU Split rewrite."
 )
 pkgdesc="${_pkgdesc[*]}"
-_commit="e54b2b307ebf1f7288d160eff341230d4fe704a4"
+_commit="690dbef7bad07c8e048e14713683e508e41946ef"
 _pkgver="0.0.1"
-pkgver="0.0.3"
+pkgver="0.0.1"
 pkgrel=1
 arch=(
   'any'
@@ -234,9 +229,14 @@ build() {
     "COPYING"
     "README.md"
     "eslint.config.mjs"
-    "fs"
+    "fs-worker.webpack.config.cjs"
+    "lib${_pkg}"
+    "index.html"
     "man"
     "package.json"
+    "serve.json"
+    "${_pkg}"
+    "webpack.config.cjs"
   )
   if [[ "${_npm}" == "false" ]]; then
     cd \
