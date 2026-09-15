@@ -93,9 +93,9 @@ _pkgdesc=(
   "Javascript GNU Split rewrite."
 )
 pkgdesc="${_pkgdesc[*]}"
-_commit="bb41ad8b2f129ddd109eb6aea39cc41c00109b95"
-_pkgver="0.0.1"
-pkgver="0.0.1"
+_commit="93cc4e1ed829411d01c4e4df74339e4b958b667c"
+_pkgver="0.0.19"
+pkgver="0.0.19"
 pkgrel=1
 arch=(
   'any'
@@ -126,12 +126,12 @@ _tarname="${_pkg}-${_tag}"
 _npm_tarname="${_ns}-${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="88c20c8c599ff72a37b02eed384fad682052e0840a0d9bd2d38583fa0d9a2ca0"
-_sig_sum="14309b98d7e22762d524cfc536b70d6be140be8c03d513542eef8277f010e03b"
+_sum="fbc07261ffcca082270f9f500f4790fd6c36872701306d805b145a2c5a7edb92"
+_sig_sum="abb8f1bfe47679ee5965138b4f946d1faabbc60dfc9a83ff7e0ea5aac7b84ab9"
 _bundle_sum="SKIP"
 _bundle_sig_sum="SKIP"
-_npm_sum="SKIP"
-_npm_sig_sum="SKIP"
+_npm_sum="955bf6257050df3240b3e4a9575c31a6485325dd9be2e56613f4ada51f851634"
+_npm_sig_sum="c123a0ee31890699dbbae4da5902ebd1aed9c0f890635ffe2438de9f12f9f146"
 # Truocolo
 _evmfs_ns="0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b"
 # Dvorak
@@ -180,7 +180,7 @@ if [[ "${_evmfs}" == "true" ]]; then
   )
 elif [[ "${_evmfs}" == "false" ]]; then
   if [[ "${_npm}" == "true" ]]; then
-    _uri="${_npm_http}/@${_ns}/${_pkg}/-/${_tarfile}"
+    _uri="${_npm_http}/${_pkg}/-/${_tarfile}"
   elif [[ "${_npm}" == "false" ]]; then
     if [[ "${_tag_name}" == 'pkgver' ]]; then
       if [[ "${_git_http}" == "gitlab" ]]; then
@@ -295,4 +295,3 @@ package_tmcsplit() {
 }
 
 # vim:set sw=2 sts=-1 et:
-
