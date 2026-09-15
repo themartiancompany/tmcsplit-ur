@@ -67,6 +67,9 @@ fi
 if [[ ! -v "_npm" ]]; then
   _npm="false"
 fi
+if [[ ! -v "_make" ]]; then
+  _make="true"
+fi
 if [[ ! -v "_git" ]]; then
   _git="false"
 fi
@@ -110,11 +113,20 @@ depends=(
   "${_node}"
 )
 provides=(
-  "nodejs-${_pkg}=${pkgver}"
+  "${_node}-${_pkg}=${pkgver}"
 )
 makedepends=(
-  "npm"
 )
+if [[ "${_make}" == "true" ]]; then
+  makedepends+=(
+    "make"
+  )
+fi
+if [[ "${_npm}" == "true" ]]; then
+  makedepends+=(
+    "npm"
+  )
+fi
 if [[ "${_npm}" == "true" ]]; then
   _tag="${pkgver}"
   _tag_name="pkgver"
@@ -225,21 +237,22 @@ validpgpkeys=(
 build() {
   local \
     _files=()
-  _files+=(
-    "AUTHORS.rst"
-    "COPYING"
-    "README.md"
-    "eslint.config.mjs"
-    "fs-worker.webpack.config.cjs"
-    "lib${_pkg}"
-    "index.html"
-    "man"
-    "package.json"
-    "serve.json"
-    "${_pkg}"
-    "webpack.config.cjs"
-  )
-  if [[ "${_npm}" == "false" ]]; then
+  if [[ "${_make}" == "false" && \
+        "${_npm}" == "false" ]]; then
+    _files+=(
+      "AUTHORS.rst"
+      "COPYING"
+      "README.md"
+      "eslint.config.mjs"
+      "fs-worker.webpack.config.cjs"
+      "lib${_pkg}"
+      "index.html"
+      "man"
+      "package.json"
+      "serve.json"
+      "${_pkg}"
+      "webpack.config.cjs"
+    )
     cd \
       "${_tarname}"
     mkdir \
@@ -265,33 +278,43 @@ package_tmcsplit() {
   local \
     _npm_options=() \
     _find_opts=()
-  _npm_options=(
-    -g 
-    # --user 
-    #   root 
-    --prefix 
-      "${pkgdir}/usr"
-  )
-  find_opts+=(
-    -type
-      "d"
-    -exec
-      chmod
-        755
-        '{}'
-        +
-  )
-  npm \
-    install \
-    "${_npm_options[@]}" \
-    "${srcdir}/${_ns}-${_Pkg}-${_pkgver}.tgz"
-  rm \
-    -fr \
-      "${pkgdir}/usr/etc"
-  # Fix npm derp
-  find \
-    "${pkgdir}/usr" \
-    "${_find_opts[@]}"
+  if [[ "${_make}" == "true" ]]; then
+    _make_opts+=(
+      DESTDIR="${pkgdir}"
+    )
+    make \ 
+      "${_make_opts[@]}" \
+      install-scripts
+  fi
+  if [[ "${_npm}" == "true" ]]; then
+    _npm_options=(
+      -g 
+      # --user 
+      #   root 
+      --prefix 
+        "${pkgdir}/usr"
+    )
+    find_opts+=(
+      -type
+        "d"
+      -exec
+        chmod
+          755
+          '{}'
+          +
+    )
+    npm \
+      install \
+      "${_npm_options[@]}" \
+      "${srcdir}/${_ns}-${_Pkg}-${_pkgver}.tgz"
+    rm \
+      -fr \
+        "${pkgdir}/usr/etc"
+    # Fix npm derp
+    find \
+      "${pkgdir}/usr" \
+      "${_find_opts[@]}"
+  fi
 }
 
 # vim:set sw=2 sts=-1 et:
